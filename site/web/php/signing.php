@@ -23,7 +23,7 @@
         </div>
         <div class="row">
             <div class="col-md-12 form-group">
-                <input type="email" placeholder="tua_email@zmail.it" class="form-control" name="cognome" maxlength="64" required>
+                <input type="email" placeholder="tua_email@zmail.it" class="form-control" name="email" maxlength="64" required>
             </div>
         </div>
         <div class="row">
@@ -37,9 +37,48 @@
                 <input type="submit" class="btn btn-block btn-login" value="Registrati" required>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <?php
+                    if(isset($_SESSION['Ecode']) && $_SESSION['Ecode']>0){
+                        echo "<h4>".$_SESSION['errore']."</h4>";
+                        echo "<h4>ritenta modificando i dati</h4>";
+                    }
+                ?>
+            </div>
+        </div>
+
+
     </form>
     <!--fine form login -->
 </div>
+
+<?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $_SESSION['Ecode'] = 0;
+        //query inserimento dati di registrazione
+        include "component_signign_query.php";
+
+        if($cn->qr($call)){
+            $_SESSION['errore'] = "";
+            header("Location: login.php");
+            exit;
+        }
+        else{
+            $_SESSION['errore'] = "errore dati o connessione";
+            $_SESSION['ECode'] = 2;
+            header("Location: signing.php");
+            exit;
+        }
+        
+      }
+      else{
+        $_SESSION['Ecode'] = 0; 
+      }
+
+
+?>
+
 
 <?php
     include "../../html/close.html";

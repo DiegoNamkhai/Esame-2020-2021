@@ -11,12 +11,12 @@ class database{
         $this->connection = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
     }
 
-    public function query($query){
+    public function fl($query){
         $result = $this->connection->query($query) or die($this->connection->error);
         return $result->fetch_assoc();
     }
 
-    public function insert($query){
+    public function qr($query){
         return $this->connection->query($query);
     }
 }
