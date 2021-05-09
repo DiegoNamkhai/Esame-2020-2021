@@ -10,7 +10,7 @@
     </div>
 <div class="simple-login-container" id="div-form">
     <!--form signign -->
-    <form action="homepage.php" method="POST">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
         <div class="row">
             <div class="col-md-12 form-group">
                 <input type="text" class="form-control" placeholder="Nome" name="nome" maxlength="32"required>
@@ -33,7 +33,8 @@
         </div>
         <div class="row">
             <div class="col-md-12 form-group">
-                <input type="submit" class="btn btn-block btn-login" value="accedi" required>
+                <input type="hidden" name="check" value="form_sign">
+                <input type="submit" class="btn btn-block btn-login" value="Registrati" required>
             </div>
         </div>
     </form>

@@ -13,17 +13,17 @@
     <form action="homepage.php" method="POST">
         <div class="row">
             <div class="col-md-12 form-group">
-                <input type="text" class="form-control" placeholder="Username">
+                <input type="email" placeholder="tua_email@zmail.it" class="form-control" name="cognome" maxlength="64" required>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12 form-group">
-                <input type="password" placeholder="Enter your Password" class="form-control">
+                <input type="password" placeholder="Password" class="form-control" name="password" maxlength="32" required>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12 form-group">
-                <input type="submit" class="btn btn-block btn-login" value="accedi" >
+                <input type="submit" class="btn btn-block btn-login" value="Accedi" >
             </div>
         </div>
     </form>
