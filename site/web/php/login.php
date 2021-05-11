@@ -10,10 +10,10 @@
     </div>
 <div class="simple-login-container" id="div-form">
     <!--form login -->
-    <form action="homepage.php" method="POST">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
         <div class="row">
             <div class="col-md-12 form-group">
-                <input type="email" placeholder="tua_email@zmail.it" class="form-control" name="cognome" maxlength="64" required>
+                <input type="email" placeholder="tua_email@zmail.it" class="form-control" name="email" maxlength="64" required>
             </div>
         </div>
         <div class="row">
@@ -29,11 +29,6 @@
     </form>
     <!--fine form login -->
     <div class="row">
-        <div class="col-md-12">
-            <a href="signing.php" id="rdr_signing"><h4 id="registrati"><h4></a>
-        </div>
-    </div>
-    <div class="row">
         <div class="col-md-12 form-group">
             <?php
                 if(isset($_SESSION['Ecode']) && $_SESSION['Ecode']>0){
@@ -41,8 +36,10 @@
                     echo "<h4>ritenta modificando i dati</h4>";
                 }
             ?>
+            <a href="signing.php" id="rdr_signing"><button type="button" class="btn btn-primary" id="registrati"></button></a>
         </div>
     </div>
+    
 </div>
 
 <?php
@@ -50,23 +47,8 @@
         $_SESSION['Ecode'] = 0;
         //query inserimento dati di registrazione
         include "component_login_query.php";
-
-        if($cn->qr($call)){
-            $_SESSION['errore'] = "";
-            header("Location: login.php");
-            exit;
-        }
-        else{
-            $_SESSION['errore'] = "errore dati o connessione";
-            $_SESSION['ECode'] = 2;
-            header("Location: signing.php");
-            exit;
-        }
         
-      }
-      else{
-        $_SESSION['Ecode'] = 0; 
-      }
+    }
 
 
 ?>

@@ -1,12 +1,12 @@
 <?php
 
-$pw = password_hash($_POST['password'], PASSWORD_DEFAULT);
 $call = "SELECT password 
          FROM utente 
          WHERE email = '".$_POST['email']."'";
-if($rs = $cn->fl(call)['password']){
-    if($rs == $pw){
+if($rs = $cn->fl($call)['password']){
+    if(password_verify($_POST['password'],$rs)){
         $_SESSION['errore'] = "";
+        $_SESSION['Ecode'] = 0;
         header("Location: homepage.php");
         exit;
 
@@ -14,14 +14,14 @@ if($rs = $cn->fl(call)['password']){
     else{
         $_SESSION['errore'] = "password sbagliata";
         $_SESSION['Ecode'] = 1;
-        header("Location: signing.php");
+        //header("Location: login.php");
         exit;
 
     }
 }
 else{
-    $_SESSION['errore'] = "login non andato a buon fine";
-    $_SESSION['Ecode'] = 2;
+    $_SESSION['errore'] = "non sei registrato, registrati!";
+    $_SESSION['Ecode'] = 3;
     header("Location: signing.php");
     exit;
 }

@@ -42,9 +42,11 @@
                 <?php
                     if(isset($_SESSION['Ecode']) && $_SESSION['Ecode']>0){
                         echo "<h4>".$_SESSION['errore']."</h4>";
-                        echo "<h4>ritenta modificando i dati</h4>";
+                        if($_SESSION['Ecode']!=3)echo "<h4>ritenta modificando i dati</h4>";
+                        //errore 3 da login nel caso in cui non si è registrati
                     }
                 ?>
+                <a href="login.php"><button type="button" class="btn btn-primary" >Torna al Login</button></a>
             </div>
         </div>
 
