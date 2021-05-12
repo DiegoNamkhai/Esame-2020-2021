@@ -1,10 +1,7 @@
-fetch('http://example.com/movies.json', {
-    headers: {
-        method: "POST"
-    }
+fetch('../web/php/sketch_call.php', {
 })
   .then(response => response.json())
-  .then(data =>{
-    dati = data;    
+  .then(data =>{  
+    alert (response);
   });
 

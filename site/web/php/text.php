@@ -2,7 +2,15 @@
     include "../../startup/starter.php";
 
 ?>
-<script src="../../js/sketch.js"></script>
+<script >
+
+fetch("sketch_call.php")
+   .then(response => {
+      console.log(response);
+      alert(response);
+   })
+   .catch(error => console.log("Si è verificato un errore!"))
+</script>
 
 
 <?php

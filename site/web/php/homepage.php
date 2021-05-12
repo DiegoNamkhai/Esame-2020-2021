@@ -43,10 +43,12 @@
 	var myTextLabel2 = L.marker(textLatLng, {
 		icon: L.divIcon({
 			className: 'text-labels',   // Set class for CSS styling
-			html: '<div id="ciao"></div>',
+			html: '<div ><a herf=\'login.php\' id="ciao"></a></div>',
 		}),
 		zIndexOffset: 1000     // Make appear above other map features
-	}).addTo(mymap);
+	}).addTo(mymap)
+	
+	myTextLabel.on('click', onMapClick);
 
 
 
@@ -54,13 +56,11 @@
 	var popup = L.popup();
 
 	function onMapClick(e) {
-		popup
-			.setLatLng(e.latlng)
-			.setContent("You clicked the map at " + e.latlng.toString())
-			.openOn(mymap);
+		alert("prova");
+		window.location.href = "http://www.w3schools.com";
 	}
 
-	mymap.on('click', onMapClick);
+	//mymap.on('click', onMapClick);
 
 	<?php include "../../js/sketch.js"; ?>
 
