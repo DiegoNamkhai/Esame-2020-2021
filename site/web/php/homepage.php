@@ -34,20 +34,22 @@
         var myTextLabel = L.marker(textLatLng, {
             icon: L.divIcon({
                 className: 'text-labels',   // Set class for CSS styling
-                html: '<script><?php 
-				
-				$string= file_get_contents('../../js/sketch.js');
-				$string = str_replace("\n", '', $string);
-				$string = str_replace(" ", '', $string);
-				$string = str_replace("{", '\{', $string);
-				$string = str_replace("}", '\}', $string);
-				$string = str_replace("'", "\\'", $string);	
-				echo $string;
-
-				?><script>',
+                html: '<div id="coaio"></div>',
             }),
             zIndexOffset: 1000     // Make appear above other map features
         }).addTo(mymap);
+
+	var textLatLng = [51.4, -0.09];  
+	var myTextLabel2 = L.marker(textLatLng, {
+		icon: L.divIcon({
+			className: 'text-labels',   // Set class for CSS styling
+			html: '<div id="ciao"></div>',
+		}),
+		zIndexOffset: 1000     // Make appear above other map features
+	}).addTo(mymap);
+
+
+
 
 	var popup = L.popup();
 
@@ -59,6 +61,8 @@
 	}
 
 	mymap.on('click', onMapClick);
+
+	<?php include "../../js/sketch.js"; ?>
 
 </script>
 

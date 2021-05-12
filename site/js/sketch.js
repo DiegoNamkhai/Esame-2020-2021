@@ -1,53 +1,22 @@
-let font,
-  fontsize = 40;
+let sketch = function(p) {
+  p.time;
+  p.wait = 1000; // change this to change the 'ticking'
+  p.c;
+  p.setup = function(){
+    p.createCanvas(200, 200);
+    p.time = p.millis();
+    p.c = p.color(255); 
+  }
 
-function preload() {
-  // Ensure the .ttf or .otf font stored in the assets directory
-  // is loaded before setup() and draw() are called
-  font = 'Georgia';
-}
+  p.draw = function(){
+    p.background(p.c);
+    if ((p.millis() - p.time) >= p.wait) {
+      p.c = p.color(p.random(255), p.random(255), p.random(255)) //if it is, change the background color
+      p.time = p.millis(); //also update the stored time
+    }
+    p.text("Milliseconds \nrunning: \n" + p.millis(), 5, 40);
+  }
+};
+new p5(sketch, 'coaio');
+new p5(sketch, 'ciao');
 
-function setup() {
-  createCanvas(40, 40);
-
-  // Set text characteristics
-  textFont(font);
-  textSize(fontsize);
-  textAlign(CENTER, CENTER);
-}
-
-function draw() {
-  background(160);
-
-  // Align the text to the right
-  // and run drawWords() in the left third of the canvas
-  textAlign(RIGHT);
-  drawWords(width * 0.25);
-
-  // Align the text in the center
-  // and run drawWords() in the middle of the canvas
-  textAlign(CENTER);
-  drawWords(width * 0.5);
-
-  // Align the text to the left
-  // and run drawWords() in the right third of the canvas
-  textAlign(LEFT);
-  drawWords(width * 0.75);
-}
-
-function drawWords(x) {
-  // The text() function needs three parameters:
-  // the text to draw, the horizontal position,
-  // and the vertical position
-  fill(0);
-  text('ichi', x, 80);
-
-  fill(65);
-  text('ni', x, 150);
-
-  fill(190);
-  text('san', x, 220);
-
-  fill(255);
-  text('shi', x, 290);
-}
