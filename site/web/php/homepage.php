@@ -34,7 +34,7 @@
         var myTextLabel = L.marker(textLatLng, {
             icon: L.divIcon({
                 className: 'text-labels',   // Set class for CSS styling
-                html: '<iframe  style=\'overflow-x:hidden;\' width="45" height="45" src="https://editor.p5js.org/diego.namkhai/embed/-jlkSqyG1"></iframe>',
+                html: '<script><script>',
             }),
             zIndexOffset: 1000     // Make appear above other map features
         }).addTo(mymap);
