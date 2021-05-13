@@ -2,10 +2,10 @@
 
 È situata in questa REPO la maggior parte del materiale utilizzato per creare l'elaborato e gran parte dell'elaborato stesso
 
-[GPOI](/GPOI/index.html)
-[SCHEMA ER](/Schema%20ER/index.html)
-[ELABORATO](/Elaborato/elaborato.html)
-[LINEE GUIDA](/Elaborato/lineeGuida.html)
+[GPOI](/GPOI/index.html)&nbsp;
+[SCHEMA ER](/Schema%20ER/index.html)&nbsp;
+[ELABORATO](/Elaborato/elaborato.html)&nbsp;
+[LINEE GUIDA](/Elaborato/lineeGuida.html)&nbsp;
 [TRACCIA ESAME](/Elaborato/traccia.html)
 
 
