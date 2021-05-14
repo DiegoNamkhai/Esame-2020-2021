@@ -11,12 +11,12 @@ let sketch = function(p) {
   p.draw = function(){
     p.background(p.c);
     if ((p.millis() - p.time) >= p.wait) {
+      
       p.c = p.color(p.random(255), p.random(255), p.random(255)) //if it is, change the background color
       p.time = p.millis(); //also update the stored time
     }
     p.text("Milliseconds \nrunning: \n" + p.millis(), 5, 40);
   }
 };
-new p5(sketch, 'coaio');
-new p5(sketch, 'ciao');
+new p5(sketch, '8');
 

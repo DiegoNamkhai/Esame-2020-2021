@@ -5,21 +5,27 @@
 
 <script>
 
-fetch("text.php", {
+fetch("../API/text.php", {
       
       // Adding method type
       method: "POST",
+
+      headers: {
+        'Content-Type' : 'application/json'
+      },
         
       // Adding body or contents to send
-      body: {
-          title: "foo"
-      },
+      body: JSON.stringify({
+          postazione : 123
+      }),
   })
     .then(response => {
-        response.json()
-        console.log(response)
+         return response.json();
     })
-    .then(sas =>console.log(sas))
+    .then(sas =>{
+        console.log(sas);
+        alert(sas);
+        })
 </script>
 
 <?php
