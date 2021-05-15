@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2021 at 12:54 AM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 8.0.5
+-- Creato il: Mag 15, 2021 alle 09:20
+-- Versione del server: 10.4.18-MariaDB
+-- Versione PHP: 8.0.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `campionamento`
+-- Struttura della tabella `campionamento`
 --
 
 CREATE TABLE `campionamento` (
@@ -32,13 +32,22 @@ CREATE TABLE `campionamento` (
   `IDcamp` int(11) NOT NULL,
   `dato` varchar(32) NOT NULL,
   `valore` double NOT NULL,
+  `unita` varchar(16) NOT NULL,
   `dataRil` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `campionamento`
+--
+
+INSERT INTO `campionamento` (`postazione`, `IDcamp`, `dato`, `valore`, `unita`, `dataRil`) VALUES
+(8, 2, 'CO2', 440, 'PPM', '2021-05-14 20:22:37'),
+(8, 3, 'CO2', 440, 'PPM', '2021-05-14 22:33:31');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `intervento`
+-- Struttura della tabella `intervento`
 --
 
 CREATE TABLE `intervento` (
@@ -50,7 +59,7 @@ CREATE TABLE `intervento` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `postazione`
+-- Struttura della tabella `postazione`
 --
 
 CREATE TABLE `postazione` (
@@ -60,10 +69,17 @@ CREATE TABLE `postazione` (
   `lttd` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dump dei dati per la tabella `postazione`
+--
+
+INSERT INTO `postazione` (`IDp`, `superU`, `lngt`, `lttd`) VALUES
+(8, 'marco.bianchi@enel.it', 43.7633, 11.2835);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `supervisione`
+-- Struttura della tabella `supervisione`
 --
 
 CREATE TABLE `supervisione` (
@@ -76,7 +92,7 @@ CREATE TABLE `supervisione` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `utente`
+-- Struttura della tabella `utente`
 --
 
 CREATE TABLE `utente` (
@@ -88,89 +104,90 @@ CREATE TABLE `utente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `utente`
+-- Dump dei dati per la tabella `utente`
 --
 
 INSERT INTO `utente` (`email`, `password`, `nome`, `cognome`, `ruolo`) VALUES
-('diego.namkhai@gmail.com', '$2y$10$eQLlJzdPpEUs1q6OjwgVxu7PyuDah78fuT1ZwfvCiAMOwAwvTfu9e', 'NAMKHAI', 'DIEGO', 'cittadino');
+('diego.namkhai@gmail.com', '$2y$10$P3H2DLdOjSja2YiKjoSK1eRnwty68VN6GmMYo.Ewndka9rAkJ5FQ.', 'Diego', 'Namkhai', 'cittadino'),
+('marco.bianchi@enel.it', '$2y$10$wnKscUXHXoj92cAmmzfh9uGeC6mjpn.h6EzTxWitRn2JWUg2ttbWS', 'Marco', 'Bianchi', 'Manutentore');
 
 --
--- Indexes for dumped tables
+-- Indici per le tabelle scaricate
 --
 
 --
--- Indexes for table `campionamento`
+-- Indici per le tabelle `campionamento`
 --
 ALTER TABLE `campionamento`
   ADD PRIMARY KEY (`IDcamp`,`postazione`),
   ADD KEY `postazione` (`postazione`);
 
 --
--- Indexes for table `intervento`
+-- Indici per le tabelle `intervento`
 --
 ALTER TABLE `intervento`
   ADD PRIMARY KEY (`utenteInt`,`IDpostazioneInt`);
 
 --
--- Indexes for table `postazione`
+-- Indici per le tabelle `postazione`
 --
 ALTER TABLE `postazione`
   ADD PRIMARY KEY (`IDp`,`superU`),
   ADD KEY `superU` (`superU`);
 
 --
--- Indexes for table `supervisione`
+-- Indici per le tabelle `supervisione`
 --
 ALTER TABLE `supervisione`
   ADD PRIMARY KEY (`utente`,`IDpostazione`),
   ADD KEY `IDpostazione` (`IDpostazione`);
 
 --
--- Indexes for table `utente`
+-- Indici per le tabelle `utente`
 --
 ALTER TABLE `utente`
   ADD PRIMARY KEY (`email`) USING BTREE;
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT per le tabelle scaricate
 --
 
 --
--- AUTO_INCREMENT for table `campionamento`
+-- AUTO_INCREMENT per la tabella `campionamento`
 --
 ALTER TABLE `campionamento`
-  MODIFY `IDcamp` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDcamp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `postazione`
+-- AUTO_INCREMENT per la tabella `postazione`
 --
 ALTER TABLE `postazione`
-  MODIFY `IDp` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- Constraints for dumped tables
+-- Limiti per le tabelle scaricate
 --
 
 --
--- Constraints for table `campionamento`
+-- Limiti per la tabella `campionamento`
 --
 ALTER TABLE `campionamento`
   ADD CONSTRAINT `campionamento_ibfk_1` FOREIGN KEY (`postazione`) REFERENCES `postazione` (`IDp`);
 
 --
--- Constraints for table `intervento`
+-- Limiti per la tabella `intervento`
 --
 ALTER TABLE `intervento`
   ADD CONSTRAINT `intervento_ibfk_1` FOREIGN KEY (`utenteInt`) REFERENCES `utente` (`email`);
 
 --
--- Constraints for table `postazione`
+-- Limiti per la tabella `postazione`
 --
 ALTER TABLE `postazione`
   ADD CONSTRAINT `postazione_ibfk_1` FOREIGN KEY (`superU`) REFERENCES `utente` (`email`);
 
 --
--- Constraints for table `supervisione`
+-- Limiti per la tabella `supervisione`
 --
 ALTER TABLE `supervisione`
   ADD CONSTRAINT `supervisione_ibfk_2` FOREIGN KEY (`IDpostazione`) REFERENCES `postazione` (`IDp`),
