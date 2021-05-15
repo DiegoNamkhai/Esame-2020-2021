@@ -18,5 +18,6 @@ let sketch = function(p) {
     p.text("Milliseconds \nrunning: \n" + p.millis(), 5, 40);
   }
 };
-new p5(sketch, '8');
+
+//new p5(sketch, '8');
 

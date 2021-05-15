@@ -1,10 +1,14 @@
 <?php
+
+
+
 $call = "SELECT IDp, lngt, lttd 
          FROM postazione";
 if($rs = $cn->qr($call)){
     //echo "<script>";
+
     while($rw = $rs->fetch_assoc()){
-        echo "var textLatLng = [".$rw['lngt'].", ".$rw['lttd']."];"
+        echo "textLatLng = [".$rw['lngt'].", ".$rw['lttd']."];"
         ?>
         var myTextLabel<?php echo $rw['IDp']; ?> = L.marker(textLatLng, {
             icon: L.divIcon({
@@ -16,6 +20,8 @@ if($rs = $cn->qr($call)){
 
 	
 	myTextLabel<?php echo $rw['IDp']; ?>.on('click', onMapClick);
+
+    new p5(sketch, '<?php echo $rw['IDp']; ?>');
     <?php
     }
 

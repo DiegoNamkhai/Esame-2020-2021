@@ -18,6 +18,8 @@
 	var textLatLng;
 	
 
+	var textLatLng;
+	<?php include "../../js/sketch.js"?>
 	<?php include "create_icon.php"?>
 
 
@@ -32,7 +34,7 @@
 	
 	//mymap.on('click', onMapClick);
 
-	<?php include "../../js/sketch.js"; ?>
+
 
 </script>
 
