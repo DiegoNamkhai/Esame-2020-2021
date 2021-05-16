@@ -3,7 +3,7 @@ let sketch = function(p) {
   p.wait = 1000; // change this to change the 'ticking'
   p.c;
   p.setup = function(){
-    p.createCanvas(200, 200);
+    p.createCanvas(50, 50);
     p.time = p.millis();
     p.c = p.color(255); 
   }

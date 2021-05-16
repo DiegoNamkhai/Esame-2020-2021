@@ -2,7 +2,7 @@
 
 
 
-$call = "SELECT IDp, lngt, lttd 
+$call = "SELECT nomeP, lngt, lttd 
          FROM postazione";
 if($rs = $cn->qr($call)){
     //echo "<script>";
@@ -10,18 +10,18 @@ if($rs = $cn->qr($call)){
     while($rw = $rs->fetch_assoc()){
         echo "textLatLng = [".$rw['lngt'].", ".$rw['lttd']."];"
         ?>
-        var myTextLabel<?php echo $rw['IDp']; ?> = L.marker(textLatLng, {
+        var myTextLabel<?php echo str_replace( '-', '', $rw['nomeP']); ?> = L.marker(textLatLng, {
             icon: L.divIcon({
-                className: '<?php echo "text-labels-".$rw['IDp']."";?>text-labels',   // Set class for CSS styling
-                html: '<div id="<?php echo $rw['IDp']; ?>"></div>',
+                className: '<?php echo "text-labels-".$rw['nomeP']."";?>',   // Set class for CSS styling
+                html: '<div id="<?php echo $rw['nomeP']; ?>"></div>',
             }),
             zIndexOffset: 1000     // Make appear above other map features
         }).addTo(mymap);
 
 	
-	myTextLabel<?php echo $rw['IDp']; ?>.on('click', onMapClick);
+	myTextLabel<?php echo str_replace( '-', '', $rw['nomeP']); ?>.on('click', onMapClick);
 
-    new p5(sketch, '<?php echo $rw['IDp']; ?>');
+    new p5(sketch, '<?php echo $rw['nomeP']; ?>');
     <?php
     }
 
