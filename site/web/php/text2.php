@@ -5,7 +5,7 @@
 
 <script>
 
-fetch("../API/text.php", {
+fetch("../API/query.php", {
       
       // Adding method type
       method: "POST",
@@ -16,7 +16,8 @@ fetch("../API/text.php", {
         
       // Adding body or contents to send
       body: JSON.stringify({
-          postazione : 123
+        dato:"PM2dot5",
+        postazione:"FI-GRAMSCI"
       }),
   })
     .then(response => {
@@ -24,7 +25,7 @@ fetch("../API/text.php", {
     })
     .then(sas =>{
         console.log(sas);
-        alert(sas);
+        alert(sas['valore']);
         })
 </script>
 

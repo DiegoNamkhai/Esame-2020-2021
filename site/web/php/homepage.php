@@ -1,9 +1,19 @@
 <?php
     include "../../startup/starter.php";
-
+	$_SESSION['dato'] = "NO2";
 ?>
-
-<div id="mapid" style="width: 600px; height: 400px;"></div>
+<link rel="stylesheet" href="../css/homepage.css">
+<div id="choose">
+	<select class="form-select"  onchange="leggiValue()" id="elemento">
+		<option value="One" >One</option>
+		<option value="Two">Two</option>
+		<option value="Three">Three</option>
+	</select>
+</div>
+<div id="mapid" style="width: 100%; height:200px;overflow: hidden;
+        padding: 40%; /* 16:9*/
+		margin-top:0%;
+        position: relative;"></div>
 <script>
 
 	var mymap = L.map('mapid').setView([43.773138, 11.255488], 12);
@@ -30,7 +40,11 @@
 		alert("cliccato");
 		window.location.href = "http://www.w3schools.com";
 	}
-
+	
+	function leggiValue() {
+		var x = document.getElementById("elemento").value;
+		console.log(x)
+	}
 	
 	//mymap.on('click', onMapClick);
 

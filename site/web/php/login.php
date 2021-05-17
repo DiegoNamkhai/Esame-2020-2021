@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="../css/login.css">
 <div class="row, text-center">
         <div class="col-md-12 form-group">
-            <h1>Inquinamento Firenze</h1> 
+            <h1>Inquinamento Firenze</h1>
         </div>
     </div>
 <div class="simple-login-container" id="div-form">

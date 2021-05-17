@@ -1,0 +1,10 @@
+select {
+    text-align: center;
+    text-align-last: center;
+    height: 100px;
+  }
+  option {
+    text-align: center;
+    text-align-last: center;
+    font-size: large;
+  }
