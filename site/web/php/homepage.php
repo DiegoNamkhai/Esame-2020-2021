@@ -1,14 +1,30 @@
 <?php
     include "../../startup/starter.php";
-	$_SESSION['dato'] = "NO2";
+	if(!(isset($_SESSION['dato'])) || $_SESSION['dato']==""){
+		$_SESSION['dato'] = "BENZENE";
+	 }
+	
 ?>
 <link rel="stylesheet" href="../css/homepage.css">
 <div id="choose">
-	<select class="form-select"  onchange="leggiValue()" id="elemento">
-		<option value="One" >One</option>
-		<option value="Two">Two</option>
-		<option value="Three">Three</option>
-	</select>
+			<select class="form-select"  onchange="leggiValue()" id="elemento">
+				<option selected><?php
+				 echo "Selezionato ".$_SESSION['dato']."";
+				 ?></option>
+				<?php 
+				$call = "SELECT DISTINCT dato
+						 FROM campionamento
+						 GROUP BY dato";
+				if($rs = $cn->qr($call)){
+
+					while($rw = $rs->fetch_assoc()){
+						echo "<option value='".$rw['dato']."'>".$rw['dato']."</option>";
+					}
+
+				}
+				else echo "<p>Errore</p>";
+				?>
+			</select>
 </div>
 <div id="mapid" style="width: 100%; height:200px;overflow: hidden;
         padding: 40%; /* 16:9*/
@@ -43,13 +59,34 @@
 	
 	function leggiValue() {
 		var x = document.getElementById("elemento").value;
-		console.log(x)
+		console.log(x);
+		//window.history.replaceState({}, '','homepage.php');
+
+		fetch("../API/session_changer.php", {
+			
+			// Adding method type
+			method: "POST",
+
+			headers: {
+				'Content-Type' : 'application/json'
+			},
+				
+			// Adding body or contents to send
+			body: JSON.stringify({
+				dato:x
+			}),
+		})
+			.then(response => {
+				return response.json();
+			})
+			.then(sas =>{
+				console.log(sas);
+				//alert(sas['valore']);
+				location.reload();
+			})
 	}
-	
-	//mymap.on('click', onMapClick);
-
-
-
+			
+			
 </script>
 
 <?php
