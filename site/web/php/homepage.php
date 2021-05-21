@@ -1,5 +1,9 @@
 <?php
     include "../../startup/starter.php";
+	if($_SESSION['Ecode'] != 0 || isset($_SESSION['Ecode']) == false){
+		header("Location: login.php");
+		exit;
+	}
 	if(!(isset($_SESSION['dato'])) || $_SESSION['dato']==""){
 		$_SESSION['dato'] = "BENZENE";
 	 }
@@ -44,7 +48,15 @@
 
 
 	function onMapClick(e) {
-		window.location.href = "stats.php";
+		window.location.href = "stats.php/?postazione="+e['target']['dragging']['_marker']['_icon']['children']['0']['id'];
+		//console.log(e);
+		//console.log(e['target']['dragging']['_marker']['_icon']['classList'][1]);
+		//console.log(e['target']['dragging']['_marker']['_icon']['children']['0']['id']);
+
+	}
+
+	function statistiche(valore) {
+		window.location.href = "stats.php/?postazione="+valore;
 	}
 	
 	function leggiValue() {
@@ -77,7 +89,7 @@
 	}
 			
 			
-</script>
+	</script>
 
 <?php
     include "../../html/close.html";

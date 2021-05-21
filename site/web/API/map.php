@@ -1,6 +1,10 @@
 <?php
 include "../../sql/database.php";
 session_start();
+if($_SESSION['Ecode'] != 0 || isset($_SESSION['Ecode']) == false){
+    header("Location: login.php");
+    exit;
+}
 $cn = new database(); 
 
 $json = file_get_contents('php://input');

@@ -1,5 +1,8 @@
 <?php
-
+if($_SESSION['Ecode'] != 0 || isset($_SESSION['Ecode']) == false){
+    header("Location: login.php");
+    exit;
+}
 
 
 $call = "SELECT postazione, lngt, lttd
@@ -14,7 +17,7 @@ if($rs = $cn->qr($call)){
         var myTextLabel<?php echo str_replace( '-', '', $rw['postazione']); ?> = L.marker(textLatLng, {
             icon: L.divIcon({
                 className: '<?php echo "text-labels-".$rw['postazione']."";?>',   // Set class for CSS styling
-                html: '<div id="<?php echo $rw['postazione']; ?>"></div>',
+                html: '<div id="<?php echo $rw['postazione']; ?>" ></div>',
             }),
             zIndexOffset: 1000     // Make appear above other map features
         }).addTo(mymap);
@@ -35,7 +38,7 @@ if($rs = $cn->qr($call)){
         }
 
         p.draw = function(){
-            p.frameRate(0.5);
+            p.frameRate(0.50);
             fetch("../API/map.php", {
             
                 // Adding method type
