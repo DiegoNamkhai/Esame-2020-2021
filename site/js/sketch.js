@@ -1,21 +1,25 @@
+var testo = id;
+console.log(testo)
+var ffont = 15;
+var textLen = ffont*testo.length;
+var lunghezza = textLen+ffont/10;
 let sketch = function(p) {
-  p.time;
-  p.wait = 1000; // change this to change the 'ticking'
-  p.c;
   p.setup = function(){
-    p.createCanvas(50, 50);
-    p.time = p.millis();
-    p.c = p.color(255); 
+    p.createCanvas(lunghezza, lunghezza);
+    //p.background(255);
   }
 
   p.draw = function(){
-    p.background(p.c);
-    if ((p.millis() - p.time) >= p.wait) {
-      
-      p.c = p.color(p.random(255), p.random(255), p.random(255)) //if it is, change the background color
-      p.time = p.millis(); //also update the stored time
-    }
-    p.text("Milliseconds \nrunning: \n" + p.millis(), 5, 40);
+    p.stroke("#A5A5A5")
+    p.strokeWeight(ffont/10);
+    p.fill("#00FF00");
+    p.circle(lunghezza/2, lunghezza/2, textLen)
+    p.noStroke();
+    p.fill(0);
+    p.textSize(ffont);
+    p.textAlign(p.CENTER, p.CENTER);
+    p.text(testo, lunghezza/2, lunghezza/2);
+    p.textSize(32);
   }
 };
 

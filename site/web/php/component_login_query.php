@@ -14,7 +14,7 @@ if($rs = $cn->fl($call)['password']){
     else{
         $_SESSION['errore'] = "password sbagliata";
         $_SESSION['Ecode'] = 1;
-        //header("Location: login.php");
+        header("Location: login.php");
         exit;
 
     }

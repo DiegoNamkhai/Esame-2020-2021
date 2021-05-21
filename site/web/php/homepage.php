@@ -11,19 +11,12 @@
 				<option selected><?php
 				 echo "Selezionato ".$_SESSION['dato']."";
 				 ?></option>
-				<?php 
-				$call = "SELECT DISTINCT dato
-						 FROM campionamento
-						 GROUP BY dato";
-				if($rs = $cn->qr($call)){
-
-					while($rw = $rs->fetch_assoc()){
-						echo "<option value='".$rw['dato']."'>".$rw['dato']."</option>";
-					}
-
-				}
-				else echo "<p>Errore</p>";
-				?>
+				<option value="NO2">NO2</option>
+				<option value="O3">O3</option>
+				<option value="CO">CO</option>
+				<option value="SO2">SO2</option>
+				<option value="H2S">H2S</option>
+				<option value="BENZENE">BENZENE</option>
 			</select>
 </div>
 <div id="mapid" style="width: 100%; height:200px;overflow: hidden;
@@ -32,7 +25,7 @@
         position: relative;"></div>
 <script>
 
-	var mymap = L.map('mapid').setView([43.773138, 11.255488], 12);
+	var mymap = L.map('mapid').setView([43.680000, 11.255488], 12);
 
 	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
@@ -41,11 +34,9 @@
 		tileSize: 512,
 		zoomOffset: -1
 	}).addTo(mymap);
-	var textLatLng;
-	
+	var textLatLng; 
 
-	var textLatLng;
-	<?php include "../../js/sketch.js"?>
+	<?php //include "../../js/sketch.js"?>
 	<?php include "create_icon.php"?>
 
 
@@ -53,8 +44,7 @@
 
 
 	function onMapClick(e) {
-		alert("cliccato");
-		window.location.href = "http://www.w3schools.com";
+		window.location.href = "stats.php";
 	}
 	
 	function leggiValue() {
