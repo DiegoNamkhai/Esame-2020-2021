@@ -1,10 +1,10 @@
 <?php
 
 class database{
-    protected $servername = "127.0.0.1";
-    protected $username = "root";
-    protected $password = "";
-    protected $dbname = "sensoristica_esame";
+    protected $servername = "127.0.0.1";//ip del server
+    protected $username = "root";//username utente
+    protected $password = "";//password utente
+    protected $dbname = "sensoristica_esame";//nome del database a cui si accede
     protected $connection;
 
     public function __construct(){

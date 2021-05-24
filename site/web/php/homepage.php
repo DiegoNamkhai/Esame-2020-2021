@@ -9,6 +9,14 @@
 	 }
 	
 ?>
+<script src="https://cdn.jsdelivr.net/npm/p5@1.3.1/lib/p5.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin="">
+        </script>
 <link rel="stylesheet" href="../css/homepage.css">
 <div id="choose">
 			<select class="form-select"  onchange="leggiValue()" id="elemento">
@@ -48,7 +56,7 @@
 
 
 	function onMapClick(e) {
-		window.location.href = "stats.php/?postazione="+e['target']['dragging']['_marker']['_icon']['children']['0']['id'];
+		window.location.href = "stats.php?postazione="+e['target']['dragging']['_marker']['_icon']['children']['0']['id'];
 		//console.log(e);
 		//console.log(e['target']['dragging']['_marker']['_icon']['classList'][1]);
 		//console.log(e['target']['dragging']['_marker']['_icon']['children']['0']['id']);

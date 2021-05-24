@@ -66,7 +66,7 @@ if($rs = $cn->qr($call)){
                         p.value = sas['valore'];
                         switch ('<?php echo $_SESSION['dato']; ?>') {
                         case 'NO2':
-                            if(p.value <= 39 && p.value > 0){
+                            if(p.value <= 39 && p.value >= 0){
                                 p.colore = '#00ff00';
                             }
                             else if(p.value <= 79 && p.value >= 40){
@@ -86,7 +86,7 @@ if($rs = $cn->qr($call)){
                             }
                             break;
                         case 'O3':
-                            if(p.value <= 35 && p.value > 0){
+                            if(p.value <= 35 && p.value >= 0){
                                 p.colore = '#00ff00';
                             }
                             else if(p.value <= 71 && p.value >= 36){
@@ -106,7 +106,7 @@ if($rs = $cn->qr($call)){
                             }
                             break;
                         case 'CO':
-                            if(p.value <= 1.9 && p.value > 0){
+                            if(p.value <= 1.9 && p.value >= 0){
                                 p.colore = '#00ff00';
                             }
                             else if(p.value <= 3.9 && p.value >= 2){
@@ -126,7 +126,7 @@ if($rs = $cn->qr($call)){
                             }
                             break;
                         case 'SO2':
-                            if(p.value <= 69 && p.value > 0){
+                            if(p.value <= 69 && p.value >= 0){
                                 p.colore = '#00ff00';
                             }
                             else if(p.value <= 139 && p.value >= 70){
@@ -146,7 +146,7 @@ if($rs = $cn->qr($call)){
                             }
                             break;
                         case 'H2S':
-                            if(p.value <= 29.9 && p.value > 0){
+                            if(p.value <= 29.9 && p.value >= 0){
                                 p.colore = '#00ff00';
                             }
                             else if(p.value <= 59.9 && p.value >= 30){
@@ -167,7 +167,7 @@ if($rs = $cn->qr($call)){
                             break;
 
                         case 'BENZENE':
-                            if(p.value <= 0.9 && p.value > 0){
+                            if(p.value <= 0.9 && p.value >= 0){
                                 p.colore = '#00ff00';
                             }
                             else if(p.value <= 1.9 && p.value >= 1){
