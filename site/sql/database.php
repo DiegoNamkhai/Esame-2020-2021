@@ -19,4 +19,8 @@ class database{
     public function qr($query){
         return $this->connection->query($query);
     }
+
+    public function getConn(){
+        return $this->connection;
+    }
 }

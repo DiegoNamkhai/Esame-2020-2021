@@ -3,12 +3,9 @@
 
 ?>
 <link rel="stylesheet" href="../css/login.css">
-<div class="row, text-center">
-        <div class="col-md-12 form-group">
-            <h1>Registrazione</h1> 
-        </div>
-    </div>
+
 <div class="simple-login-container" id="div-form">
+<h1>Registrazione</h1> 
     <!--form signign -->
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
         <div class="row">

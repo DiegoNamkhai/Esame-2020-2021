@@ -3,12 +3,13 @@
 
 ?>
 <link rel="stylesheet" href="../css/login.css">
+
+<div class="simple-login-container" id="div-form">
 <div class="row, text-center">
         <div class="col-md-12 form-group">
             <h1>Inquinamento Firenze</h1>
         </div>
     </div>
-<div class="simple-login-container" id="div-form">
     <!--form login -->
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
         <div class="row">

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 15, 2021 alle 09:20
--- Versione del server: 10.4.18-MariaDB
--- Versione PHP: 8.0.5
+-- Generation Time: May 28, 2021 at 10:42 PM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 8.0.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -21,70 +21,366 @@ SET time_zone = "+00:00";
 -- Database: `sensoristica_esame`
 --
 
+DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `test` ()  BEGIN
+ DECLARE count INT DEFAULT 0;
+ DECLARE num INT DEFAULT 0;
+ WHILE count < (SELECT count(*)
+FROM q1) DO
+   SELECT media, COUNT(*)+1 from medie;
+ END WHILE;
+END$$
+
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `campionamento`
+-- Table structure for table `campionamento`
 --
 
 CREATE TABLE `campionamento` (
-  `postazione` int(11) NOT NULL,
+  `postazione` varchar(32) NOT NULL,
   `IDcamp` int(11) NOT NULL,
-  `dato` varchar(32) NOT NULL,
-  `valore` double NOT NULL,
-  `unita` varchar(16) NOT NULL,
-  `dataRil` datetime NOT NULL
+  `dataRil` datetime NOT NULL,
+  `NO2` float DEFAULT NULL,
+  `O3` float DEFAULT NULL,
+  `CO` float DEFAULT NULL,
+  `SO2` float DEFAULT NULL,
+  `H2S` float DEFAULT NULL,
+  `BENZENE` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dump dei dati per la tabella `campionamento`
+-- Dumping data for table `campionamento`
 --
 
-INSERT INTO `campionamento` (`postazione`, `IDcamp`, `dato`, `valore`, `unita`, `dataRil`) VALUES
-(8, 2, 'CO2', 440, 'PPM', '2021-05-14 20:22:37'),
-(8, 3, 'CO2', 440, 'PPM', '2021-05-14 22:33:31');
+INSERT INTO `campionamento` (`postazione`, `IDcamp`, `dataRil`, `NO2`, `O3`, `CO`, `SO2`, `H2S`, `BENZENE`) VALUES
+('FI-BASSI', 354, '2021-05-20 17:00:00', 10, NULL, NULL, 0.6, NULL, 0.3),
+('FI-GRAMSCI', 355, '2021-05-20 17:00:00', 28, NULL, 0.4, NULL, NULL, 0.9),
+('FI-MOSSE', 356, '2021-05-20 17:00:00', 24, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 357, '2021-05-20 16:00:00', 7, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 358, '2021-05-20 17:00:00', 2, 102, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 359, '2021-05-20 15:00:00', 3, 105, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 360, '2021-05-20 16:00:00', 3, 105, NULL, NULL, NULL, NULL),
+('FI-BASSI', 361, '2021-05-20 18:00:00', 12, NULL, NULL, 1, NULL, 3.1),
+('FI-GRAMSCI', 362, '2021-05-20 18:00:00', 35, NULL, 0.4, NULL, NULL, 0.9),
+('FI-MOSSE', 363, '2021-05-20 18:00:00', 22, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 364, '2021-05-20 17:00:00', 9, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 365, '2021-05-20 18:00:00', 1, 79, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 366, '2021-05-20 17:00:00', 5, 108, NULL, NULL, NULL, NULL),
+('FI-BASSI', 367, '2021-05-20 20:00:00', 55, NULL, NULL, 0.3, NULL, 1.6),
+('FI-GRAMSCI', 368, '2021-05-20 20:00:00', 74, NULL, 0.8, NULL, NULL, 2.7),
+('FI-MOSSE', 369, '2021-05-20 20:00:00', 32, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 370, '2021-05-20 19:00:00', 32, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 371, '2021-05-20 20:00:00', 4, 63, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 372, '2021-05-20 19:00:00', 8, 98, NULL, NULL, NULL, NULL),
+('FI-BASSI', 373, '2021-05-20 21:00:00', 31, NULL, NULL, 0.4, NULL, 1.8),
+('FI-GRAMSCI', 374, '2021-05-20 21:00:00', 75, NULL, 1.1, NULL, NULL, 2.4),
+('FI-MOSSE', 375, '2021-05-20 21:00:00', 52, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 376, '2021-05-20 20:00:00', 35, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 377, '2021-05-20 21:00:00', 3, 59, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 378, '2021-05-20 20:00:00', 12, 85, NULL, NULL, NULL, NULL),
+('FI-BASSI', 379, '2021-05-20 22:00:00', 35, NULL, NULL, 0.3, NULL, 1.2),
+('FI-GRAMSCI', 380, '2021-05-20 22:00:00', 54, NULL, 0.9, NULL, NULL, 3.1),
+('FI-MOSSE', 381, '2021-05-20 22:00:00', 39, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 382, '2021-05-20 21:00:00', 40, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 383, '2021-05-20 22:00:00', 0, 48, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 384, '2021-05-20 21:00:00', 11, 83, NULL, NULL, NULL, NULL),
+('FI-BASSI', 385, '2021-05-21 06:00:00', 22, NULL, NULL, 0.1, NULL, 0.6),
+('FI-GRAMSCI', 386, '2021-05-21 06:00:00', 79, NULL, 1.3, NULL, NULL, 3.1),
+('FI-MOSSE', 387, '2021-05-21 06:00:00', 31, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 388, '2021-05-21 05:00:00', 19, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 389, '2021-05-21 06:00:00', NULL, 39, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 390, '2021-05-21 05:00:00', NULL, 22, NULL, NULL, NULL, NULL),
+('FI-BASSI', 391, '2021-05-21 07:00:00', 26, NULL, NULL, 0.4, NULL, 0.8),
+('FI-SIGNA', 392, '2021-05-21 06:00:00', 18, 19, NULL, NULL, NULL, NULL),
+('FI-BASSI', 393, '2021-05-21 09:00:00', 15, NULL, NULL, 0.7, NULL, 0.8),
+('FI-GRAMSCI', 394, '2021-05-21 09:00:00', 53, NULL, 0.6, NULL, NULL, 2.1),
+('FI-MOSSE', 395, '2021-05-21 09:00:00', 40, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 396, '2021-05-21 08:00:00', 14, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 397, '2021-05-21 09:00:00', NULL, 68, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 398, '2021-05-21 08:00:00', 23, 45, NULL, NULL, NULL, NULL),
+('FI-BASSI', 399, '2021-05-21 10:00:00', 14, NULL, NULL, 0.6, NULL, 1),
+('FI-GRAMSCI', 400, '2021-05-21 10:00:00', 45, NULL, 0.5, NULL, NULL, 1.3),
+('FI-MOSSE', 401, '2021-05-21 10:00:00', 26, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 402, '2021-05-21 09:00:00', 13, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 403, '2021-05-21 10:00:00', NULL, 88, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 404, '2021-05-21 09:00:00', 16, 64, NULL, NULL, NULL, NULL),
+('FI-BASSI', 405, '2021-05-21 11:00:00', 9, NULL, NULL, 1.2, NULL, 1.3),
+('FI-GRAMSCI', 406, '2021-05-21 11:00:00', 37, NULL, 0.5, NULL, NULL, 1.2),
+('FI-MOSSE', 407, '2021-05-21 11:00:00', 24, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 408, '2021-05-21 10:00:00', 14, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 409, '2021-05-21 11:00:00', NULL, 98, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 410, '2021-05-21 10:00:00', 17, 75, NULL, NULL, NULL, NULL),
+('FI-BASSI', 411, '2021-05-21 12:00:00', 6, NULL, NULL, 1.9, NULL, 0.5),
+('FI-GRAMSCI', 412, '2021-05-21 12:00:00', 26, NULL, 0.4, NULL, NULL, 0.8),
+('FI-MOSSE', 413, '2021-05-21 12:00:00', 14, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 414, '2021-05-21 11:00:00', 6, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 415, '2021-05-21 12:00:00', NULL, 101, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 416, '2021-05-21 11:00:00', 5, 100, NULL, NULL, NULL, NULL),
+('FI-BASSI', 417, '2021-05-21 13:00:00', 6, NULL, NULL, 1.3, NULL, 0.3),
+('FI-GRAMSCI', 418, '2021-05-21 13:00:00', 20, NULL, 0.3, NULL, NULL, 0.6),
+('FI-MOSSE', 419, '2021-05-21 13:00:00', 15, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 420, '2021-05-21 12:00:00', 6, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 421, '2021-05-21 13:00:00', NULL, 101, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 422, '2021-05-21 12:00:00', 3, 103, NULL, NULL, NULL, NULL),
+('FI-BASSI', 423, '2021-05-21 14:00:00', 5, NULL, NULL, 0.7, NULL, 0.2),
+('FI-GRAMSCI', 424, '2021-05-21 14:00:00', 21, NULL, 0.3, NULL, NULL, 0.6),
+('FI-MOSSE', 425, '2021-05-21 14:00:00', 19, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 426, '2021-05-21 13:00:00', 6, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 427, '2021-05-21 14:00:00', NULL, 100, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 428, '2021-05-21 13:00:00', 3, 103, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 429, '2021-05-21 14:00:00', 7, NULL, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 430, '2021-05-21 14:00:00', 2, 101, NULL, NULL, NULL, NULL),
+('FI-BASSI', 431, '2021-05-21 15:00:00', 6, NULL, NULL, 0.2, NULL, 0.1),
+('FI-GRAMSCI', 432, '2021-05-21 15:00:00', 19, NULL, 0.3, NULL, NULL, 0.9),
+('FI-MOSSE', 433, '2021-05-21 15:00:00', 18, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 434, '2021-05-21 15:00:00', 8, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 435, '2021-05-21 15:00:00', NULL, 97, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 436, '2021-05-21 15:00:00', 2, 94, NULL, NULL, NULL, NULL),
+('FI-BASSI', 437, '2021-05-21 16:00:00', 6, NULL, NULL, 0.5, NULL, 0.1),
+('FI-GRAMSCI', 438, '2021-05-21 16:00:00', NULL, NULL, NULL, NULL, NULL, 0.6),
+('FI-MOSSE', 439, '2021-05-21 16:00:00', 18, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 440, '2021-05-21 16:00:00', 7, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 441, '2021-05-21 16:00:00', NULL, 92, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 442, '2021-05-21 16:00:00', 3, 93, NULL, NULL, NULL, NULL),
+('FI-BASSI', 443, '2021-05-21 18:00:00', 7, NULL, NULL, 0.5, NULL, 0.4),
+('FI-GRAMSCI', 444, '2021-05-21 18:00:00', 21, NULL, 0.4, NULL, NULL, 0.8),
+('FI-MOSSE', 445, '2021-05-21 18:00:00', 15, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 446, '2021-05-21 17:00:00', 9, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 447, '2021-05-21 18:00:00', NULL, 88, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 448, '2021-05-21 17:00:00', 3, 90, NULL, NULL, NULL, NULL),
+('FI-BASSI', 449, '2021-05-21 19:00:00', 11, NULL, NULL, 0.5, NULL, 0.4),
+('FI-GRAMSCI', 450, '2021-05-21 19:00:00', 25, NULL, 0.4, NULL, NULL, 0.8),
+('FI-MOSSE', 451, '2021-05-21 19:00:00', 12, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 452, '2021-05-21 18:00:00', 7, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 453, '2021-05-21 19:00:00', NULL, 87, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 454, '2021-05-21 18:00:00', 3, 87, NULL, NULL, NULL, NULL),
+('FI-BASSI', 455, '2021-05-21 20:00:00', NULL, NULL, NULL, NULL, NULL, 0.4),
+('FI-GRAMSCI', 456, '2021-05-21 20:00:00', 25, NULL, 0.4, NULL, NULL, 0.7),
+('FI-SCANDICCI', 457, '2021-05-21 19:00:00', 9, NULL, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 458, '2021-05-21 19:00:00', 7, 82, NULL, NULL, NULL, NULL),
+('FI-BASSI', 459, '2021-05-21 21:00:00', 9, NULL, NULL, 0.7, NULL, 0.5),
+('FI-GRAMSCI', 460, '2021-05-21 21:00:00', 32, NULL, 0.5, NULL, NULL, 1),
+('FI-MOSSE', 461, '2021-05-21 21:00:00', 12, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 462, '2021-05-21 20:00:00', 8, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 463, '2021-05-21 21:00:00', NULL, 64, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 464, '2021-05-21 20:00:00', 8, 79, NULL, NULL, NULL, NULL),
+('FI-BASSI', 465, '2021-05-22 05:00:00', 8, NULL, NULL, 0.5, NULL, 0.3),
+('FI-GRAMSCI', 466, '2021-05-22 05:00:00', 58, NULL, 0.4, NULL, NULL, 0.6),
+('FI-MOSSE', 467, '2021-05-22 05:00:00', 31, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 468, '2021-05-22 05:00:00', 5, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 469, '2021-05-22 05:00:00', 0, 93, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 470, '2021-05-22 06:00:00', NULL, 46, NULL, NULL, NULL, NULL),
+('FI-BASSI', 471, '2021-05-22 06:00:00', 13, NULL, NULL, 0.7, NULL, 0.3),
+('FI-GRAMSCI', 472, '2021-05-22 06:00:00', 85, NULL, 0.6, NULL, NULL, 0.9),
+('FI-MOSSE', 473, '2021-05-22 06:00:00', 48, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 474, '2021-05-22 06:00:00', 34, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 475, '2021-05-22 06:00:00', 0, 65, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 476, '2021-05-22 07:00:00', 11, 40, NULL, NULL, NULL, NULL),
+('FI-BASSI', 477, '2021-05-22 11:00:00', 6, NULL, NULL, 0.8, NULL, 0.3),
+('FI-GRAMSCI', 478, '2021-05-22 11:00:00', 64, NULL, 0.8, NULL, NULL, 2.3),
+('FI-MOSSE', 479, '2021-05-22 11:00:00', 18, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 480, '2021-05-22 11:00:00', 4, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 481, '2021-05-22 11:00:00', 0, 87, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 482, '2021-05-22 11:00:00', 11, 78, NULL, NULL, NULL, NULL),
+('FI-BASSI', 483, '2021-05-22 12:00:00', 6, NULL, NULL, 0.8, NULL, 0.2),
+('FI-GRAMSCI', 484, '2021-05-22 12:00:00', 70, NULL, 0.9, NULL, NULL, 3.1),
+('FI-MOSSE', 485, '2021-05-22 12:00:00', 11, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 486, '2021-05-22 12:00:00', 3, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 487, '2021-05-22 12:00:00', 0, 85, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 488, '2021-05-22 12:00:00', 8, 81, NULL, NULL, NULL, NULL),
+('FI-BOBOLI', 489, '2021-05-20 23:00:00', NULL, NULL, NULL, NULL, NULL, NULL),
+('FI-BASSI', 490, '2021-05-22 13:00:00', 6, NULL, NULL, 0.9, NULL, 0.2),
+('FI-GRAMSCI', 491, '2021-05-22 13:00:00', 53, NULL, 0.6, NULL, NULL, 1.7),
+('FI-MOSSE', 492, '2021-05-22 13:00:00', 11, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 493, '2021-05-22 13:00:00', 8, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 494, '2021-05-22 13:00:00', 0, 85, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 495, '2021-05-22 13:00:00', 7, 87, NULL, NULL, NULL, NULL),
+('FI-BASSI', 496, '2021-05-22 14:00:00', 7, NULL, NULL, 0.6, NULL, 0.2),
+('FI-GRAMSCI', 497, '2021-05-22 14:00:00', 60, NULL, 0.6, NULL, NULL, 1),
+('FI-MOSSE', 498, '2021-05-22 14:00:00', 23, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 499, '2021-05-22 14:00:00', 15, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 500, '2021-05-22 14:00:00', 0, 83, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 501, '2021-05-22 14:00:00', 8, 78, NULL, NULL, NULL, NULL),
+('FI-BASSI', 502, '2021-05-22 21:00:00', NULL, NULL, NULL, NULL, NULL, 0.6),
+('FI-GRAMSCI', 503, '2021-05-22 21:00:00', 64, NULL, 0.9, NULL, NULL, 2),
+('FI-MOSSE', 504, '2021-05-22 21:00:00', 22, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 505, '2021-05-22 20:00:00', 7, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 506, '2021-05-22 21:00:00', 0, 76, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 507, '2021-05-22 20:00:00', 4, 64, NULL, NULL, NULL, NULL),
+('FI-BASSI', 508, '2021-05-23 11:00:00', 4, NULL, NULL, 0.9, NULL, 0),
+('FI-GRAMSCI', 509, '2021-05-23 10:00:00', 15, NULL, 0.4, NULL, NULL, 0.8),
+('FI-MOSSE', 510, '2021-05-23 09:00:00', 10, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 511, '2021-05-23 10:00:00', 3, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 512, '2021-05-23 10:00:00', 1, 84, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 513, '2021-05-23 11:00:00', 2, 87, NULL, NULL, NULL, NULL),
+('FI-BASSI', 514, '2021-05-23 13:00:00', 4, NULL, NULL, 0.1, NULL, 0.1),
+('FI-GRAMSCI', 515, '2021-05-23 13:00:00', 9, NULL, 0.3, NULL, NULL, 0.3),
+('FI-MOSSE', 516, '2021-05-23 13:00:00', 7, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 517, '2021-05-23 12:00:00', 0, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 518, '2021-05-23 13:00:00', 0, 88, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 519, '2021-05-23 12:00:00', 2, 90, NULL, NULL, NULL, NULL),
+('FI-GRAMSCI', 520, '2021-05-23 17:00:00', 16, NULL, 0.3, NULL, NULL, 0.4),
+('FI-MOSSE', 521, '2021-05-23 17:00:00', 7, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 522, '2021-05-23 16:00:00', 1, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 523, '2021-05-23 17:00:00', 0, 92, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 524, '2021-05-23 16:00:00', 2, 94, NULL, NULL, NULL, NULL),
+('FI-GRAMSCI', 525, '2021-05-23 18:00:00', NULL, NULL, NULL, NULL, NULL, 0.5),
+('FI-MOSSE', 526, '2021-05-23 18:00:00', 13, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 527, '2021-05-23 17:00:00', 2, NULL, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 528, '2021-05-23 17:00:00', 2, 91, NULL, NULL, NULL, NULL),
+('FI-GRAMSCI', 529, '2021-05-23 19:00:00', 30, NULL, 0.4, NULL, NULL, 0.5),
+('FI-MOSSE', 530, '2021-05-23 19:00:00', 15, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 531, '2021-05-23 18:00:00', 9, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 532, '2021-05-23 19:00:00', 1, 67, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 533, '2021-05-23 18:00:00', 5, 82, NULL, NULL, NULL, NULL),
+('FI-GRAMSCI', 534, '2021-05-23 20:00:00', 61, NULL, 0.7, NULL, NULL, 1.7),
+('FI-MOSSE', 535, '2021-05-23 20:00:00', 23, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 536, '2021-05-23 19:00:00', 12, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 537, '2021-05-23 20:00:00', 1, 59, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 538, '2021-05-23 19:00:00', 6, 80, NULL, NULL, NULL, NULL),
+('FI-GRAMSCI', 539, '2021-05-23 21:00:00', 73, NULL, 1, NULL, NULL, 2.5),
+('FI-MOSSE', 540, '2021-05-23 21:00:00', 30, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 541, '2021-05-23 20:00:00', 7, NULL, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 542, '2021-05-23 20:00:00', 10, 73, NULL, NULL, NULL, NULL),
+('FI-BASSI', 543, '2021-05-24 13:00:00', 46, NULL, NULL, 0.1, NULL, 1),
+('FI-GRAMSCI', 544, '2021-05-24 13:00:00', 58, NULL, 0.7, NULL, NULL, 2.4),
+('FI-MOSSE', 545, '2021-05-24 13:00:00', 49, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 546, '2021-05-24 12:00:00', 27, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 547, '2021-05-24 13:00:00', 24, 13, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 548, '2021-05-24 12:00:00', 20, 39, NULL, NULL, NULL, NULL),
+('FI-BASSI', 549, '2021-05-24 14:00:00', 36, NULL, NULL, 0.2, NULL, 1.2),
+('FI-GRAMSCI', 550, '2021-05-24 14:00:00', 51, NULL, 0.6, NULL, NULL, 1.9),
+('FI-MOSSE', 551, '2021-05-24 14:00:00', 47, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 552, '2021-05-24 13:00:00', 29, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 553, '2021-05-24 14:00:00', 21, 19, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 554, '2021-05-24 13:00:00', 20, 41, NULL, NULL, NULL, NULL),
+('FI-BASSI', 555, '2021-05-24 15:00:00', 37, NULL, NULL, 0.2, NULL, 1.1),
+('FI-GRAMSCI', 556, '2021-05-24 15:00:00', 60, NULL, 0.8, NULL, NULL, 1.6),
+('FI-MOSSE', 557, '2021-05-24 15:00:00', 50, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 558, '2021-05-24 14:00:00', 34, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 559, '2021-05-24 15:00:00', 15, 24, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 560, '2021-05-24 14:00:00', 18, 47, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 561, '2021-05-24 15:00:00', 38, NULL, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 562, '2021-05-24 15:00:00', 13, 50, NULL, NULL, NULL, NULL),
+('FI-BASSI', 563, '2021-05-24 16:00:00', 27, NULL, NULL, 0.1, NULL, 1.4),
+('FI-GRAMSCI', 564, '2021-05-24 16:00:00', 41, NULL, 0.6, NULL, NULL, 1.6),
+('FI-MOSSE', 565, '2021-05-24 16:00:00', 44, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 566, '2021-05-24 16:00:00', 23, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 567, '2021-05-24 16:00:00', 7, 40, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 568, '2021-05-24 16:00:00', 7, 59, NULL, NULL, NULL, NULL),
+('FI-BASSI', 569, '2021-05-24 18:00:00', 27, NULL, NULL, 0, NULL, 0.9),
+('FI-GRAMSCI', 570, '2021-05-24 18:00:00', 53, NULL, 0.7, NULL, NULL, 1.6),
+('FI-MOSSE', 571, '2021-05-24 18:00:00', 38, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 572, '2021-05-24 17:00:00', 22, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 573, '2021-05-24 18:00:00', 10, 38, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 574, '2021-05-24 17:00:00', 6, 61, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 575, '2021-05-24 18:00:00', 20, NULL, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 576, '2021-05-24 18:00:00', 9, 23, NULL, NULL, NULL, NULL),
+('FI-BASSI', 577, '2021-05-24 19:00:00', 37, NULL, NULL, 0, NULL, 0.9),
+('FI-GRAMSCI', 578, '2021-05-24 19:00:00', NULL, NULL, NULL, NULL, NULL, 1.1),
+('FI-MOSSE', 579, '2021-05-24 19:00:00', 37, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 580, '2021-05-24 19:00:00', 18, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 581, '2021-05-24 19:00:00', 16, 27, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 582, '2021-05-24 19:00:00', 11, 1, NULL, NULL, NULL, NULL),
+('FI-BASSI', 583, '2021-05-24 21:00:00', 13, NULL, NULL, 0, NULL, 0.9),
+('FI-GRAMSCI', 584, '2021-05-24 21:00:00', 19, NULL, 0.4, NULL, NULL, 0.6),
+('FI-MOSSE', 585, '2021-05-24 21:00:00', 19, NULL, NULL, NULL, NULL, NULL),
+('FI-SCANDICCI', 586, '2021-05-24 20:00:00', 19, NULL, NULL, NULL, NULL, NULL),
+('FI-SETTIGNANO', 587, '2021-05-24 21:00:00', 9, 45, NULL, NULL, NULL, NULL),
+('FI-SIGNA', 588, '2021-05-24 20:00:00', 11, 7, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `intervento`
+-- Table structure for table `intervento`
 --
 
 CREATE TABLE `intervento` (
   `utenteInt` varchar(64) NOT NULL,
-  `IDpostazioneInt` int(11) NOT NULL,
+  `IDpostazioneInt` varchar(32) NOT NULL,
   `dataInt` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `postazione`
+-- Stand-in structure for view `medie`
+-- (See below for the actual view)
 --
-
-CREATE TABLE `postazione` (
-  `IDp` int(11) NOT NULL,
-  `superU` varchar(64) NOT NULL,
-  `lngt` float NOT NULL,
-  `lttd` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dump dei dati per la tabella `postazione`
---
-
-INSERT INTO `postazione` (`IDp`, `superU`, `lngt`, `lttd`) VALUES
-(8, 'marco.bianchi@enel.it', 43.7633, 11.2835);
+CREATE TABLE `medie` (
+`media` double
+,`dataRil` datetime
+);
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `supervisione`
+-- Stand-in structure for view `post`
+-- (See below for the actual view)
+--
+CREATE TABLE `post` (
+`postazione` varchar(32)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `postazione`
+--
+
+CREATE TABLE `postazione` (
+  `nomeP` varchar(32) NOT NULL,
+  `superU` varchar(64) NOT NULL,
+  `lngt` double NOT NULL,
+  `lttd` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `postazione`
+--
+
+INSERT INTO `postazione` (`nomeP`, `superU`, `lngt`, `lttd`) VALUES
+('FI-BASSI', 'marco.bianchi@enel.it', 43.785651, 11.286632),
+('FI-BOBOLI', 'marco.bianchi@enel.it', 43.764213, 11.248074),
+('FI-GRAMSCI', 'marco.bianchi@enel.it', 43.772067, 11.271167),
+('FI-MOSSE', 'marco.bianchi@enel.it', 43.784807, 11.230453),
+('FI-SCANDICCI', 'marco.bianchi@enel.it', 43.755968, 11.191893),
+('FI-SETTIGNANO', 'marco.bianchi@enel.it', 43.788113, 11.323028),
+('FI-SIGNA', 'marco.bianchi@enel.it', 43.793234, 11.097849);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `q1`
+-- (See below for the actual view)
+--
+CREATE TABLE `q1` (
+`postazione` varchar(32)
+,`IDcamp` int(11)
+,`dataRil` datetime
+,`NO2` float
+,`O3` float
+,`CO` float
+,`SO2` float
+,`H2S` float
+,`BENZENE` float
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `supervisione`
 --
 
 CREATE TABLE `supervisione` (
   `utente` varchar(64) NOT NULL,
-  `IDpostazione` int(11) NOT NULL,
+  `IDpostazione` varchar(32) NOT NULL,
   `dataIni` date NOT NULL,
   `dataFin` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -92,7 +388,7 @@ CREATE TABLE `supervisione` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `utente`
+-- Table structure for table `utente`
 --
 
 CREATE TABLE `utente` (
@@ -104,94 +400,123 @@ CREATE TABLE `utente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dump dei dati per la tabella `utente`
+-- Dumping data for table `utente`
 --
 
 INSERT INTO `utente` (`email`, `password`, `nome`, `cognome`, `ruolo`) VALUES
+('a@giacomo.it', '$2y$10$uQnp8rC.JBGCWqkNltx7QOWIpuAo5iUfsAuSQpYNbwsESinEM0QRe', 'Alessio', 'Fantoni', 'cittadino'),
+('arientiivan17@gmail.com', '$2y$10$XYUiLZSnwL5F27IhlLaZgeP7rGccZHysKcYd3KkBlu9TXDyeAlsne', 'Ivan', 'Arienti', 'cittadino'),
 ('diego.namkhai@gmail.com', '$2y$10$P3H2DLdOjSja2YiKjoSK1eRnwty68VN6GmMYo.Ewndka9rAkJ5FQ.', 'Diego', 'Namkhai', 'cittadino'),
-('marco.bianchi@enel.it', '$2y$10$wnKscUXHXoj92cAmmzfh9uGeC6mjpn.h6EzTxWitRn2JWUg2ttbWS', 'Marco', 'Bianchi', 'Manutentore');
+('marco.bianchi@enel.it', '$2y$10$wnKscUXHXoj92cAmmzfh9uGeC6mjpn.h6EzTxWitRn2JWUg2ttbWS', 'Marco', 'Bianchi', 'Manutentore'),
+('massimogiuliano2020@gmail.com', '$2y$10$xHE0E7mc5a2Ag8pzIeYrHueedLyyU9LrWLLIqm27NypIowdYTTivi', 'Massimo ', 'Giuliano', 'cittadino'),
+('ndujacoin@gmail.com', '$2y$10$4h2tpD.uTQk4VZroarGeRe.LPfL14otV4Q.vddIsf72eT09VZXBAC', 'Alessio', 'Fantoni', 'cittadino'),
+('p.alessio@gmail.com', '$2y$10$SQlwJ9SyRyVQByjTK7NEWer97HCZ8WRJJ39Jm65yBid9bR7RCQWQ2', 'Petrucci', 'Alessio', 'cittadino'),
+('yeshi.namkhai@gmail.com', '$2y$10$..bE05JMgO4csMlOcoE.NeCMAkC/oMwsfSmh4/n3HkfHCzgfEFwsy', 'Silvano', 'Namkhai', 'cittadino');
+
+-- --------------------------------------------------------
 
 --
--- Indici per le tabelle scaricate
+-- Structure for view `medie`
+--
+DROP TABLE IF EXISTS `medie`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `medie`  AS SELECT avg(`q1`.`NO2`) AS `media`, `q1`.`dataRil` AS `dataRil` FROM `q1` GROUP BY `q1`.`dataRil` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `post`
+--
+DROP TABLE IF EXISTS `post`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `post`  AS SELECT DISTINCT `q1`.`postazione` AS `postazione` FROM `q1` GROUP BY `q1`.`postazione` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `q1`
+--
+DROP TABLE IF EXISTS `q1`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `q1`  AS SELECT `campionamento`.`postazione` AS `postazione`, `campionamento`.`IDcamp` AS `IDcamp`, `campionamento`.`dataRil` AS `dataRil`, `campionamento`.`NO2` AS `NO2`, `campionamento`.`O3` AS `O3`, `campionamento`.`CO` AS `CO`, `campionamento`.`SO2` AS `SO2`, `campionamento`.`H2S` AS `H2S`, `campionamento`.`BENZENE` AS `BENZENE` FROM `campionamento` WHERE `campionamento`.`NO2` is not null AND week(`campionamento`.`dataRil`) = (select week(max(`campionamento`.`dataRil`)) from `campionamento`) ;
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Indici per le tabelle `campionamento`
+-- Indexes for table `campionamento`
 --
 ALTER TABLE `campionamento`
   ADD PRIMARY KEY (`IDcamp`,`postazione`),
   ADD KEY `postazione` (`postazione`);
 
 --
--- Indici per le tabelle `intervento`
+-- Indexes for table `intervento`
 --
 ALTER TABLE `intervento`
-  ADD PRIMARY KEY (`utenteInt`,`IDpostazioneInt`);
+  ADD PRIMARY KEY (`utenteInt`,`IDpostazioneInt`),
+  ADD KEY `IDpostazioneInt` (`IDpostazioneInt`);
 
 --
--- Indici per le tabelle `postazione`
+-- Indexes for table `postazione`
 --
 ALTER TABLE `postazione`
-  ADD PRIMARY KEY (`IDp`,`superU`),
+  ADD PRIMARY KEY (`nomeP`,`superU`),
   ADD KEY `superU` (`superU`);
 
 --
--- Indici per le tabelle `supervisione`
+-- Indexes for table `supervisione`
 --
 ALTER TABLE `supervisione`
   ADD PRIMARY KEY (`utente`,`IDpostazione`),
   ADD KEY `IDpostazione` (`IDpostazione`);
 
 --
--- Indici per le tabelle `utente`
+-- Indexes for table `utente`
 --
 ALTER TABLE `utente`
   ADD PRIMARY KEY (`email`) USING BTREE;
 
 --
--- AUTO_INCREMENT per le tabelle scaricate
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT per la tabella `campionamento`
+-- AUTO_INCREMENT for table `campionamento`
 --
 ALTER TABLE `campionamento`
-  MODIFY `IDcamp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `IDcamp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=589;
 
 --
--- AUTO_INCREMENT per la tabella `postazione`
---
-ALTER TABLE `postazione`
-  MODIFY `IDp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- Limiti per le tabelle scaricate
+-- Constraints for dumped tables
 --
 
 --
--- Limiti per la tabella `campionamento`
+-- Constraints for table `campionamento`
 --
 ALTER TABLE `campionamento`
-  ADD CONSTRAINT `campionamento_ibfk_1` FOREIGN KEY (`postazione`) REFERENCES `postazione` (`IDp`);
+  ADD CONSTRAINT `campionamento_ibfk_1` FOREIGN KEY (`postazione`) REFERENCES `postazione` (`nomeP`);
 
 --
--- Limiti per la tabella `intervento`
+-- Constraints for table `intervento`
 --
 ALTER TABLE `intervento`
-  ADD CONSTRAINT `intervento_ibfk_1` FOREIGN KEY (`utenteInt`) REFERENCES `utente` (`email`);
+  ADD CONSTRAINT `intervento_ibfk_1` FOREIGN KEY (`utenteInt`) REFERENCES `utente` (`email`),
+  ADD CONSTRAINT `intervento_ibfk_2` FOREIGN KEY (`IDpostazioneInt`) REFERENCES `postazione` (`nomeP`);
 
 --
--- Limiti per la tabella `postazione`
+-- Constraints for table `postazione`
 --
 ALTER TABLE `postazione`
   ADD CONSTRAINT `postazione_ibfk_1` FOREIGN KEY (`superU`) REFERENCES `utente` (`email`);
 
 --
--- Limiti per la tabella `supervisione`
+-- Constraints for table `supervisione`
 --
 ALTER TABLE `supervisione`
-  ADD CONSTRAINT `supervisione_ibfk_2` FOREIGN KEY (`IDpostazione`) REFERENCES `postazione` (`IDp`),
-  ADD CONSTRAINT `supervisione_ibfk_3` FOREIGN KEY (`utente`) REFERENCES `utente` (`email`);
+  ADD CONSTRAINT `supervisione_ibfk_3` FOREIGN KEY (`utente`) REFERENCES `utente` (`email`),
+  ADD CONSTRAINT `supervisione_ibfk_4` FOREIGN KEY (`IDpostazione`) REFERENCES `postazione` (`nomeP`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
