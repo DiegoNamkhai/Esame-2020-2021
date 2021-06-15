@@ -19,7 +19,7 @@
         </script>
 <link rel="stylesheet" href="../css/homepage.css">
 <div id="choose">
-			<select class="form-select"  onchange="leggiValue()" id="elemento">
+			<select class="form-select"  onchange="leggiValue()" id="elemento" >
 				<option selected><?php
 				 echo "Selezionato ".$_SESSION['dato']."";
 				 ?></option>

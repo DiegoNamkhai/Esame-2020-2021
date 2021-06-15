@@ -15,7 +15,7 @@
      $call ="SELECT dataRil, ".$_SESSION['dato']." AS valore
      FROM campionamento
      WHERE postazione = '".$_GET['postazione']."' AND DAY(dataRil) = (
-     SELECT MAX(DAY(dataRil))
+     SELECT DAY(MAX(dataRil))
      FROM campionamento
      WHERE postazione = '".$_GET['postazione']."'
      )
